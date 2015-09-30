@@ -22,21 +22,12 @@ elseif (strlen( $_POST['phpro_password']) > 20 || strlen($_POST['phpro_password'
 {
     $message = 'Incorrect Length for Password';
 }
-/*** check the username has only alpha numeric characters ***/
-elseif (ctype_alnum($_POST['phpro_username']) != true)
-{
-    /*** if there is no match ***/
-    $message = "Username must be alpha numeric";
-}
-/*** check the password has only alpha numeric characters ***/
-elseif (ctype_alnum($_POST['phpro_password']) != true)
-{
-        /*** if there is no match ***/
-        $message = "Password must be alpha numeric";
-}
+
 else
 {
     /*** if we are here the data is valid and we can insert it into database ***/
+    $phpro_firstname = filter_var($_POST['phpro_firstname'], FILTER_SANITIZE_STRING);
+    $phpro_lastname = filter_var($_POST['phpro_lastname'], FILTER_SANITIZE_STRING);
     $phpro_username = filter_var($_POST['phpro_username'], FILTER_SANITIZE_STRING);
     $phpro_password = filter_var($_POST['phpro_password'], FILTER_SANITIZE_STRING);
 
@@ -65,9 +56,11 @@ else
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the insert ***/
-        $stmt = $dbh->prepare("INSERT INTO phpro_users (phpro_username, phpro_password ) VALUES (:phpro_username, :phpro_password )");
+        $stmt = $dbh->prepare("INSERT INTO phpro_users (phpro_firstname, phpro_lastname, phpro_username, phpro_password ) VALUES (:phpro_firstname, :phpro_lastname, :phpro_username, :phpro_password )");
 
         /*** bind the parameters ***/
+        $stmt->bindParam(':phpro_firstname', $phpro_firstname, PDO::PARAM_STR);
+        $stmt->bindParam(':phpro_lastname', $phpro_lastname, PDO::PARAM_STR);
         $stmt->bindParam(':phpro_username', $phpro_username, PDO::PARAM_STR);
         $stmt->bindParam(':phpro_password', $phpro_password, PDO::PARAM_STR, 40);
 
