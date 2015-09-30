@@ -7,3 +7,12 @@ phpro_password char(40) NOT NULL,
 PRIMARY KEY (phpro_user_id),
 UNIQUE KEY phpro_username (phpro_username)
 );
+
+
+
+CREATE TABLE `products` (
+`id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`name` varchar(16) NOT NULL DEFAULT '',
+`price` INT NOT NULL,
+`stock` INT NOT NULL,
+);

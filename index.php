@@ -20,7 +20,7 @@ echo "<table>";
     echo "<tr>";
         echo "<th class='textAlignLeft'>Product Name</th>";
         echo "<th>Price (USD)</th>";
-        echo "<th>Stock (USD)</th>";
+        echo "<th>Available (USD)</th>";
     echo "</tr>";
 
 while ($product = mysql_fetch_assoc($result)) 
@@ -30,7 +30,17 @@ while ($product = mysql_fetch_assoc($result))
 		        echo "<div>{$product['name']}</div>";
 		    echo "</td>";
 		    echo "<td>&#36;{$product['price']}</td>";
-		    echo "<td> {$product['stock']} </td>";
+		    $stock = $product['stock'];
+		    if ( $stock == 0) {
+		    	echo "<td> OUT OF STOCK </td>";
+			}
+			else {
+				echo"<td> <form method='get' action='buy.php'>
+				<input type='hidden' value='{$product['id']}'
+				<input type='submit' value='Buy Now'>
+				</form>";
+				echo "<a href='/eShop/buy.php'> Buy Now </a></td>" ;
+			}
 		echo "</tr>";
 	} 
 }
