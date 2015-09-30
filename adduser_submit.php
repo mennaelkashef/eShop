@@ -3,7 +3,7 @@
 session_start();
 
 /*** first check that both the username, password and form token have been sent ***/
-if(!isset( $_POST['phpro_username'], $_POST['phpro_password'], $_POST['form_token']))
+if(!isset( $_POST['username'], $_POST['password'], $_POST['form_token']))
 {
     $message = 'Please enter a valid username and password';
 }
@@ -13,12 +13,12 @@ elseif( $_POST['form_token'] != $_SESSION['form_token'])
     $message = 'Invalid form submission';
 }
 /*** check the username is the correct length ***/
-elseif (strlen( $_POST['phpro_username']) > 20 || strlen($_POST['phpro_username']) < 4)
+elseif (strlen( $_POST['username']) > 20 || strlen($_POST['username']) < 4)
 {
     $message = 'Incorrect Length for Username';
 }
 /*** check the password is the correct length ***/
-elseif (strlen( $_POST['phpro_password']) > 20 || strlen($_POST['phpro_password']) < 4)
+elseif (strlen( $_POST['password']) > 20 || strlen($_POST['password']) < 4)
 {
     $message = 'Incorrect Length for Password';
 }
@@ -26,13 +26,13 @@ elseif (strlen( $_POST['phpro_password']) > 20 || strlen($_POST['phpro_password'
 else
 {
     /*** if we are here the data is valid and we can insert it into database ***/
-    $phpro_firstname = filter_var($_POST['phpro_firstname'], FILTER_SANITIZE_STRING);
-    $phpro_lastname = filter_var($_POST['phpro_lastname'], FILTER_SANITIZE_STRING);
-    $phpro_username = filter_var($_POST['phpro_username'], FILTER_SANITIZE_STRING);
-    $phpro_password = filter_var($_POST['phpro_password'], FILTER_SANITIZE_STRING);
+    $firstname = filter_var($_POST['firstname'], FILTER_SANITIZE_STRING);
+    $lastname = filter_var($_POST['lastname'], FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
     /*** now we can encrypt the password ***/
-    $phpro_password = sha1( $phpro_password );
+    $password = sha1( $password );
     
     /*** connect to database ***/
     /*** mysql hostname ***/
@@ -56,13 +56,13 @@ else
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         /*** prepare the insert ***/
-        $stmt = $dbh->prepare("INSERT INTO phpro_users (phpro_firstname, phpro_lastname, phpro_username, phpro_password ) VALUES (:phpro_firstname, :phpro_lastname, :phpro_username, :phpro_password )");
+        $stmt = $dbh->prepare("INSERT INTO users (firstname, lastname, username, password ) VALUES (:firstname, :lastname, :username, :password )");
 
         /*** bind the parameters ***/
-        $stmt->bindParam(':phpro_firstname', $phpro_firstname, PDO::PARAM_STR);
-        $stmt->bindParam(':phpro_lastname', $phpro_lastname, PDO::PARAM_STR);
-        $stmt->bindParam(':phpro_username', $phpro_username, PDO::PARAM_STR);
-        $stmt->bindParam(':phpro_password', $phpro_password, PDO::PARAM_STR, 40);
+        $stmt->bindParam(':firstname', $firstname, PDO::PARAM_STR);
+        $stmt->bindParam(':lastname', $lastname, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':password', $password, PDO::PARAM_STR, 40);
 
         /*** execute the prepared statement ***/
         $stmt->execute();

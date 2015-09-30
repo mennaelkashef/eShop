@@ -20,20 +20,20 @@ $_SESSION['form_token'] = $form_token;
 <form action="adduser_submit.php" method="post">
 <fieldset>
 <p>
-<label for="phpro_username">First Name</label>
-<input type="text" id="phpro_firstname" name="phpro_firstname" value="" maxlength="20" />
+<label for="firstname">First Name</label>
+<input type="text" id="firstname" name="firstname" value="" maxlength="20" />
 </p>
 <p>
-<label for="phpro_username">Last Name</label>
-<input type="text" id="phpro_lastname" name="phpro_lastname" value="" maxlength="20" />
+<label for="lastname">Last Name</label>
+<input type="text" id="lastname" name="lastname" value="" maxlength="20" />
 </p>
 <p>
-<label for="phpro_username">Email</label>
-<input type="text" id="phpro_username" name="phpro_username" value="" maxlength="20" />
+<label for="username">Email</label>
+<input type="text" id="username" name="username" value="" maxlength="20" />
 </p>
 <p>
-<label for="phpro_password">Password</label>
-<input type="text" id="phpro_password" name="phpro_password" value="" maxlength="20" />
+<label for="password">Password</label>
+<input type="text" id="password" name="password" value="" maxlength="20" />
 </p>
 <p>
 <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
