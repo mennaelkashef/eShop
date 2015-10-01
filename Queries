@@ -1,3 +1,10 @@
+CREATE TABLE purchases (
+    `purchase_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+    `user_id` int(16) NOT NULL,
+    `product_id` int(32) NOT NULL,
+     PRIMARY KEY (`purchase_id`)
+);
+
 CREATE TABLE `products` (
 `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `name` varchar(16) NOT NULL DEFAULT '',
@@ -19,7 +26,6 @@ CREATE TABLE CART (
 `cart_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `product_id` INT,
 `user_id` INT,
-`bought` boolean NOT NULL DEFAULT 0
 )
 
 CREATE TABLE Product_Images (

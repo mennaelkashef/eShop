@@ -31,7 +31,7 @@
 			while ($user = mysql_fetch_assoc($result)) {
 				$user_id = $user['user_id'];
 			}
-		$query = "INSERT INTO `Cart` (product_id, user_id, bought) VALUES ('$product_id', '$user_id', 1)";
+		$query = "INSERT INTO `purchases` (product_id, user_id) VALUES ('$product_id', '$user_id')";
 	    mysql_query($query) or die(mysql_error());
 	    $query = "UPDATE `Products` SET `stock` = `stock` - 1 WHERE (`id` = $product_id);";
 	    mysql_query($query) or die(mysql_error());

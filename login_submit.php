@@ -103,13 +103,8 @@ else
         $message = 'We are unable to process your request. Please try again later"';
     }
 }
+
+header("Location: /eShop/index.php");
+die();
 ?>
 
-<html>
-<head>
-<title>PHPRO Login</title>
-</head>
-<body>
-<p><?php echo $message; ?>
-</body>
-</html>

@@ -12,7 +12,7 @@
 	session_start();
 	if (isset($_SESSION['user_id'])) {
 		$user_id = $_SESSION['user_id'];
-		$query = "SELECT a.name, a.price FROM Products a, CART b WHERE a.id = b.product_id and b.bought = 1 and b.user_id=1";
+		$query = "SELECT a.name, a.price FROM Products a, purchases b WHERE a.id = b.product_id and b.user_id=1";
 		$result = mysql_query($query) or die(mysql_error());
 		$numRows = mysql_num_rows($result);
 		if ($numRows > 0) {

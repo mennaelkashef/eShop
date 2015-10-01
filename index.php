@@ -6,6 +6,12 @@
 <body>
 <h1>Products</h1>
 <?php
+session_start();
+if(isset( $_SESSION['checkout'] ) && $_SESSION['checkout']==='1')
+{
+    $_SESSION['checkout']='0';
+    echo "<script>alert('your purchase was successful;')</script>";
+}
 $username = 'root';
 mysql_connect('localhost', $username); 
 mysql_select_db('eShop_db');
@@ -31,7 +37,7 @@ while ($product = mysql_fetch_assoc($result))
  				$result2 = mysql_query("$query");
  				$numRows = mysql_num_rows($result2); 
  				if ($numRows > 0) {
-		        echo "<div>{$product['name']} <img src='getProductImage.php?id={$product['id']}' width='175' height='200'/></div>";
+		        echo "<div>{$product['name']} <img src='getProductImage.php?id={$product['id']}' width='175' height='100'/></div>";
 		    	} else {
 		    	echo "<div>{$product['name']} </div>";
 
@@ -47,6 +53,26 @@ while ($product = mysql_fetch_assoc($result))
 				<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
 				<input type='submit' value='Buy Now'>
 				</form> </td>" ;
+
+				$user = $_SESSION['user_id'];
+				$query2 = "SELECT * FROM `users` WHERE username='$user';";
+				$result2 = mysql_query($query2) or die(mysql_error());
+				$user = mysql_fetch_assoc($result2);
+				$user_id = $user['user_id'];
+				$product_id = $product['id'];
+				$query3 = "SELECT * FROM `cart` WHERE product_id='$product_id' AND user_id=$user_id;";
+				$result3 = mysql_query($query3) or die(mysql_error());
+				$product = mysql_fetch_assoc($result3);
+				$numRows = mysql_num_rows($result3); 
+				echo "<td>";
+				if ($numRows > 0) {
+					echo"<button class ='remove' onclick=removeFromCart($product_id)>Remove from cart</button>";
+				}
+				else {
+					echo "<button class ='add' onclick=addToCart($product_id)>Add to cart</button>";
+				}
+				echo "</td>";
+
 			}
 
 		echo "</tr>";
@@ -55,8 +81,8 @@ while ($product = mysql_fetch_assoc($result))
 else {
 echo '<p>No Products.</p>';
 }
+
 echo "</table>";
-	session_start();
 
 
 if (isset($_SESSION['product_id']) and ($_SESSION['product_id'] != 0)) {
@@ -81,11 +107,43 @@ if ( !isset($_SESSION['user_id'])) {
 	  	  <a href='/eShop/register.php'> Sign up </button>";
 }
 else {
+	echo "<a href='/eShop/viewCart.php'> View Cart </a> </br>";
 	echo "<a href='/eShop/edit-profile.php'> Edit your profile </a> </br>" ;
 	echo "<a href='/eShop/history.php'> View your history </a> </br>" ;
 	echo "<a href=''> Log out </a>";
 }
 ?>
+
+
 </body>
 </html>
-   
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+
+	 
+ function addToCart(product_id) {
+ 	  $.ajax({
+            url : 'addToCart.php', // give complete url here
+            type : 'GET',
+            data : 'product_id='+product_id,
+            success : function(){
+                alert('This item has been added to your cart');
+                window.location.reload(true);
+            }
+        });
+}
+
+function removeFromCart(product_id) {
+ 	  $.ajax({
+            url : 'removeFromCart.php', // give complete url here
+            type : 'GET',
+            data : 'product_id='+product_id,
+            success : function(){
+                alert('This item has been removed from your cart');
+                window.location.reload(true);
+            }
+        });
+}
+
+
+</script>
