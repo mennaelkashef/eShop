@@ -24,11 +24,11 @@ elseif (strlen( $_POST['password']) > 20 || strlen($_POST['password']) < 4)
     $message = 'Incorrect Length for Password';
 }
 /*** check the username has only alpha numeric characters ***/
-elseif (ctype_alnum($_POST['username']) != true)
-{
-    /*** if there is no match ***/
-    $message = "Username must be alpha numeric";
-}
+// elseif (ctype_alnum($_POST['username']) != true)
+// {
+//     ** if there is no match **
+//     $message = "Username must be alpha numeric";
+// }
 /*** check the password has only alpha numeric characters ***/
 elseif (ctype_alnum($_POST['password']) != true)
 {
@@ -92,6 +92,7 @@ else
 
                 /*** tell the user we are logged in ***/
                 $message = 'You are now logged in';
+                header("Location: /eShop/index.php");
         }
 
 

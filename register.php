@@ -12,7 +12,7 @@ $_SESSION['form_token'] = $form_token;
 
 <html>
 <head>
-<title>PHPRO Login</title>
+<title>Register</title>
 </head>
 
 <body>
