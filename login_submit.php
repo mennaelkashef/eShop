@@ -23,18 +23,7 @@ elseif (strlen( $_POST['password']) > 20 || strlen($_POST['password']) < 4)
 {
     $message = 'Incorrect Length for Password';
 }
-/*** check the username has only alpha numeric characters ***/
-elseif (ctype_alnum($_POST['username']) != true)
-{
-    /*** if there is no match ***/
-    $message = "Username must be alpha numeric";
-}
-/*** check the password has only alpha numeric characters ***/
-elseif (ctype_alnum($_POST['password']) != true)
-{
-        /*** if there is no match ***/
-        $message = "Password must be alpha numeric";
-}
+
 else
 {
     /*** if we are here the data is valid and we can insert it into database ***/
@@ -102,13 +91,8 @@ else
         $message = 'We are unable to process your request. Please try again later"';
     }
 }
+
+header("Location: /eShop/index.php");
+die();
 ?>
 
-<html>
-<head>
-<title>PHPRO Login</title>
-</head>
-<body>
-<p><?php echo $message; ?>
-</body>
-</html>
