@@ -14,3 +14,30 @@ password char(40) NOT NULL,
 PRIMARY KEY (user_id),
 UNIQUE KEY username (username)
 );
+
+CREATE TABLE CART (
+`cart_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+`product_id` INT,
+`user_id` INT,
+`bought` boolean NOT NULL DEFAULT 0
+)
+
+CREATE TABLE Product_Images (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(30) NOT NULL,
+type VARCHAR(30) NOT NULL,
+size INT NOT NULL,
+content MEDIUMBLOB NOT NULL,
+PRIMARY KEY(id),
+product_id INT
+);
+
+CREATE TABLE User_Images (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(30) NOT NULL,
+type VARCHAR(30) NOT NULL,
+size INT NOT NULL,
+content MEDIUMBLOB NOT NULL,
+PRIMARY KEY(id),
+user_id INT
+);
