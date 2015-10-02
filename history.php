@@ -12,7 +12,12 @@
 	session_start();
 	if (isset($_SESSION['user_id'])) {
 		$user_id = $_SESSION['user_id'];
-		$query = "SELECT a.name, a.price FROM Products a, purchases b WHERE a.id = b.product_id and b.user_id=1";
+		$query = "SELECT `user_id` FROM `users` WHERE `username` = '$user_id'";
+		$result = mysql_query($query) or die(mysql_error());
+			while ($user = mysql_fetch_assoc($result)) {
+				$user_id = $user['user_id'];
+			}
+		$query = "SELECT a.name, a.price FROM Products a, purchases b WHERE a.id = b.product_id and b.user_id='$user_id'";
 		$result = mysql_query($query) or die(mysql_error());
 		$numRows = mysql_num_rows($result);
 		if ($numRows > 0) {

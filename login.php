@@ -8,7 +8,7 @@
 <form action="login_submit.php" method="post">
 <fieldset>
 <p>
-<label for="username">Username</label>
+<label for="username">Email</label>
 <input type="text" id="username" name="username" value="" maxlength="20" />
 </p>
 <p>
@@ -18,6 +18,8 @@
 <p>
 <input type="submit" value="→ Login" />
 </p>
+	<a href='/eShop/register.php'> Sign up here </a>
+
 </fieldset>
 </form>
 </body>
