@@ -97,6 +97,12 @@ if (isset($_SESSION['product_id']) and ($_SESSION['product_id'] != 0)) {
 
 	$_SESSION['product_id'] = 0;
 }
+
+if(isset( $_SESSION['password_changed'] ) && $_SESSION['password_changed']=== 1)
+{
+    $_SESSION['password_changed']= 0;
+    echo "<script>alert('Password Changed Successfully')</script>";
+}
 mysql_close(); ?>
 
 <a href="/eShop/add.php"> Add Product </a> </br>
@@ -109,6 +115,7 @@ if ( !isset($_SESSION['user_id'])) {
 else {
 	echo "<a href='/eShop/viewCart.php'> View Cart </a> </br>";
 	echo "<a href='/eShop/edit-profile.php'> Edit your profile </a> </br>" ;
+	echo "<a href='/eShop/change-password.php'> Change Password </a> </br>" ;
 	echo "<a href='/eShop/history.php'> View your history </a> </br>" ;
 	echo "<a href=''> Log out </a>";
 }

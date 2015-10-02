@@ -124,9 +124,10 @@
 </p>
 <p>
 <input type="submit" value="&rarr; Submit" />
-<a href="/eShop/index.php"> Back to HomePage</a>
 
 </p>
+<a href="/eShop/index.php"> Back to HomePage</a>
+
 </fieldset>
 </form>
 </body>
