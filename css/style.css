@@ -1,0 +1,54 @@
+body {
+	font-family:  "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+nav {
+	display: block;
+	height:80px;
+	width: 100%;
+	border-bottom: 1px solid #f4f4f4;
+	z-index: 100;
+}
+.logo-container {
+	text-align: center;
+}
+.logo {
+	color: black;
+	text-decoration: none;
+	width: 100%;
+	text-align: center;
+}
+
+.logo_she {
+	text-align: center;
+}
+
+.userMenu_list {
+	height: 20px;
+	float: right;
+	margin-right: 10px;
+	margin-top: 5px;
+}
+
+.userMenu_item {
+	display: inline-block;
+	margin-right: 3px;
+	margin-left: 3px;
+}
+
+.userMenu_item a{
+	color: black;
+}
+
+.userMenu_list .userMenu_divider {
+	
+}
+
+.userMenu_item a:hover{
+	color: black;
+	text-decoration: none;
+}
+
+.userMenu_item a:focus{
+	color: black;
+	text-decoration: none;
+}
