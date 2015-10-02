@@ -9,18 +9,26 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
+	<?php session_start(); ?>
 	<nav class ="md-col-12">
 		<div class  = "userMenu">
 			<ul class = "userMenu_list">
-				<li class = "userMenu_item"><a href="#"><?php session_start();
-				echo $_SESSION['user_id']; ?></a></li>
+			<?php if (isset($_SESSION['user_id'])) { ?>
+				<li class = "userMenu_item"><a href="#">
+				<?php  echo $_SESSION['user_id']; ?></a></li>
 				<li class = "userMenu_item userMenu_divider">|</li>
-				<li class = "userMenu_item"><a href="#">History</a></li>
+				<li class = "userMenu_item"><a href="/eShop/history.php">History</a></li>
 				<li class = "userMenu_item userMenu_divider">|</li>
-		        <li class = "userMenu_item"><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+		        <li class = "userMenu_item"><a href="/eShop/viewCart.php"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 		        <li class = "userMenu_item userMenu_divider">|</li>
-		        <li class = "userMenu_item"><a href="#">Logout</a></li>
+		        <li class = "userMenu_item"><a href="/eShop/logout.php">Logout</a></li>
+		    <?php } else { ?>
+		    	<li class = "userMenu_item userMenu_divider">|</li>
+				<li class = "userMenu_item"><a href="/eShop/login.php">Log in</a></li>
+				<li class = "userMenu_item userMenu_divider">|</li>
+		        <li class = "userMenu_item"><a href="/eShop/register.php">Register</a></li>
 			</ul>
+			<?php } ?>
 		</div>
 		<!-- <div class = "logo-space">
 			<div class = "logo-container">
