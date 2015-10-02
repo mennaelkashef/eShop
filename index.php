@@ -10,7 +10,7 @@ session_start();
 if(isset( $_SESSION['checkout'] ) && $_SESSION['checkout']==='1')
 {
     $_SESSION['checkout']='0';
-    echo "<script>alert('your purchase was successful;')</script>";
+    echo "<script>alert('your purchase was successful')</script>";
 }
 $username = 'root';
 mysql_connect('localhost', $username); 
@@ -34,7 +34,7 @@ while ($product = mysql_fetch_assoc($result))
 	    echo "<tr>";
 		    echo "<td>";
 		    	$query = "SELECT * FROM Product_Images WHERE product_id={$product['id']}";
- 				$result2 = mysql_query("$query");
+ 				$result2 = mysql_query($query) or die(mysql_error());
  				$numRows = mysql_num_rows($result2); 
  				if ($numRows > 0) {
 		        echo "<div>{$product['name']} <img src='getProductImage.php?id={$product['id']}' width='175' height='100'/></div>";
