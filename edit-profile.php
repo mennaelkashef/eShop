@@ -4,12 +4,11 @@
 </head>
 
 <body>
-<h2>Edit Profile</h2>
+<?php 	require('header.php'); ?>
 <?php 
 	$username = 'root';
 	mysql_connect('localhost', $username); 
 	mysql_select_db('eShop_db');
-	session_start();
 	if (isset($_SESSION['user_id'])) {
 		$user_id_session = $_SESSION['user_id'];
 		$query = "SELECT * FROM `users` WHERE username='$user_id_session'";
@@ -85,28 +84,39 @@
 		}
 		mysql_close();
 	}
-
-
-
  ?>
-<form action="" method="post" enctype="multipart/form-data">
-<fieldset>
-<p>
-<label for="firstname">First Name</label>
-<input type="text" id="firstname" name="firstname" value="<?php echo $user['firstname']?>" maxlength="20" />
-</p>
-<p>
-<label for="lastname">Last Name</label>
-<input type="text" id="lastname" name="lastname" value="<?php echo $user['lastname']?>" maxlength="20" />
-</p>
-<p>
-<label for="username">Email</label>
-<input type="text" id="username" name="username" value="<?php echo $user['username']?>" maxlength="20" />
-</p>
-<p>
 
-<h4 for="image">Profile Picture</h4>
-   <?php $query = "SELECT * FROM User_Images WHERE user_id=$user_id";
+ <html>
+<head>
+<title>Edit Profile</title>
+</head>
+<body>
+<div class="container">
+<div class="row">
+<div class=" col-md-6 col-md-offset-3">
+
+	<form class='form-horizontal box' id='register_form'role='form' action="" method="post" enctype="multipart/form-data">
+    <h2>Edit Profile</h2>
+        <div class="form-group">
+            <div class="col-md-10">
+              <input type="text" class="form-control" name="firstname" id="firstname" value="<?php echo $user['firstname']?>" placeholder="First Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+              <input type="text" class="form-control" name="lastname" id="lastname" value="<?php echo $user['lastname']?>" placeholder="Last Name">
+            </div>
+       </div>
+        <div class="form-group">
+            <div class="col-md-10">
+              <input type="email" class="form-control" name="username" id="username" value="<?php echo $user['username']?>">
+            </div>
+      </div>
+
+
+      <div class="form-group"> 
+        <div class="col-md-10">
+           <?php $query = "SELECT * FROM User_Images WHERE user_id=$user_id";
 			$result2 = mysql_query("$query");
 			$numRows = mysql_num_rows($result2); 
 			if ($numRows > 0) {
@@ -115,20 +125,43 @@
         	echo "<br> <label for='image'>Edit Profile Picture: </label>";
 
     	} else {
-    		echo "<h4> No Profile Image Chosen </h4>";        	
-    		echo "<br> <label for='image'>Choose Profile Picture: </label>";
+    		echo "<label for='image'>Choose Profile Picture: </label>";
    		}
     	?>
+            <input type="file" name="image" id="image">
+        </div>
+    </div>
+    <div class="form-group">
+            <div class="col-md-10">
+            	<a href="/eShop/change-password.php"> Change Password</a>
+            </div>
+    </div>
 
-	<input type="file" name="image" id="image">
-</p>
-<p>
-<input type="submit" value="&rarr; Submit" />
-
-</p>
-<a href="/eShop/index.php"> Back to HomePage</a>
-
-</fieldset>
-</form>
+    <div class="form-group"> 
+        <div class="col-md-10">
+          <button type="submit" class="btn btn-block btn-cta-primary">Submit</button>
+        </div>
+     </div>
+        </form>
+	</div>
+	</div>
+</div>
 </body>
 </html>
+
+<style type="text/css">
+	.container {
+		width: 100%;
+	}
+
+	form {
+		display: block;
+	}
+	form.box {
+    border: 0px solid #e9e9e9;
+    margin: 0 28px;
+    padding: 50px 55px;
+	}
+
+
+</style>

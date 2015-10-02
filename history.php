@@ -4,12 +4,14 @@
 	<title>History</title>
 </head>
 <body>
-	<h1>History</h1>
+
 	<?php 
+			require('header.php');
+
 	$username = 'root';
 	mysql_connect('localhost', $username); 
 	mysql_select_db('eShop_db');
-	session_start();
+	// session_start();
 	if (isset($_SESSION['user_id'])) {
 		$user_id = $_SESSION['user_id'];
 		$query = "SELECT `user_id` FROM `users` WHERE `username` = '$user_id'";
@@ -17,25 +19,32 @@
 			while ($user = mysql_fetch_assoc($result)) {
 				$user_id = $user['user_id'];
 			}
-		$query = "SELECT a.name, a.price FROM Products a, purchases b WHERE a.id = b.product_id and b.user_id='$user_id'";
+		$query = "SELECT a.id, a.name, a.price FROM Products a, purchases b WHERE a.id = b.product_id and b.user_id='$user_id'";
 		$result = mysql_query($query) or die(mysql_error());
 		$numRows = mysql_num_rows($result);
 		if ($numRows > 0) {
-			echo "<table>";
-
-			    echo "<tr>";
-			        echo "<th class='textAlignLeft'>Product Name</th>";
-			        echo "<th>Price (USD)</th>";
-			    echo "</tr>";
+		echo "<div class='products-list col-md-12'>";
+		echo "<h1>History</h1>";
 
 			while ($product = mysql_fetch_assoc($result)) 
 				{ 
-				    echo "<tr>";
-					    echo "<td>";
-					        echo "<div>{$product['name']}</div>";
-					    echo "</td>";
-					    echo "<td>&#36;{$product['price']}</td>";
-					echo "</tr>";
+		    	$query = "SELECT * FROM Product_Images WHERE product_id={$product['id']}";
+ 				$result2 = mysql_query($query) or die(mysql_error());
+ 				$numRows = mysql_num_rows($result2); 
+ 				if ($numRows > 0) {
+		        echo "<div class ='product-container col-md-3'>
+						<div class = 'product-img '>
+							<img src='getProductImage.php?id={$product['id']}' />
+						</div>
+						<div class = 'product-properties'>
+							<div class ='product-name'>{$product['name']}</div>";
+		    	} else {
+		    	echo "<div class = 'product-properties'>
+						<div class='product-name'>{$product['name']} </div>";
+
+		    	}
+
+		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div>";
 				} 
 
 		} else {
@@ -43,6 +52,6 @@
 		}
 	}
 	?>
-	<a href="/eShop/"> Back to HomePage</a>
+	<!-- <a href="/eShop/"> Back to HomePage</a> -->
 </body>
 </html>
