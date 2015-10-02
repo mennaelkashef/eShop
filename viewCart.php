@@ -34,7 +34,7 @@
 				$product = mysql_fetch_assoc($result2);
 				echo "<table>";
 				echo "<tr>";
-				echo"<td>{$product['name']}</td>";
+				echo"<td>{$product['name']}</td><td>{$product['price']}</td>";
 				echo "<td><button onclick=removeFromCart($product_id)>remove</button></td>";
 				echo"</tr>";
 				echo "</table>";

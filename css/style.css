@@ -5,8 +5,10 @@ nav {
 	height: 60px;
 	width: 100%;
 	z-index: 100;
-	background: black;
-  	background: linear-gradient(#777, white);
+	background: none;
+  	background: linear-gradient(#ccc, white);
+  	position: fixed;
+  	top: 0;
 }
 
 nav div {
@@ -30,13 +32,89 @@ nav div {
 }
 
 .userMenu_item a{
-	color: white;
+	color: #777;
 }
 
 .userMenu_list .userMenu_divider {
-	color: white;	
+	color: #777;	
 }
 
+.products-list {
+	margin-top: 70px;
+}
+
+.product-container {
+	display: inline-block;
+	height: 400px;
+}
+
+.product-img {
+	height:300px;
+}
+
+.product-img img {
+	width: 80%;
+	height: 100%;
+}
+
+
+.product-properties {
+	margin: 10px 0;
+	width: 80%;
+}
+
+.product-properties div{
+	display: inline-block;
+
+}
+
+.product-name {
+	font-size: 16px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.product-price {
+	float: right;
+	font-weight: 600;
+}
+.product-options {
+	margin: 5px 0 ;
+	width: 80%;
+
+}
+
+.buy-button {
+	background: #fff;
+	border:none;
+	font-size: 15px;
+	font-weight: 550;
+	border: 1px solid #eee;
+}
+
+.add {
+	float: right;
+	color:#777;
+	cursor: pointer;
+	font-size: 17px;
+}
+
+.add-hidden {
+	
+}
+
+.add-to-cart {
+
+}
+.remove {
+	float: right;
+	color: #777;
+	cursor: pointer;
+	font-size: 17px;
+}
+.product-options div {
+	display: inline-block;
+}
 
 .userMenu_item a:hover{
 	color: black;
@@ -46,4 +124,18 @@ nav div {
 .userMenu_item a:focus{
 	color: black;
 	text-decoration: none;
+}
+
+.add:hover {
+	color:#777;
+	text-decoration: none;
+}
+
+.remove:hover {
+	color:#777;
+	text-decoration: none;
+}
+
+.buy-button:hover{
+
 }

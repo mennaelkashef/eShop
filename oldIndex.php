@@ -25,7 +25,7 @@ $numRows = mysql_num_rows($result);
 if ($numRows > 0) {
 
 
-echo "<div class='products-list col-md-12'>";
+
 while ($product = mysql_fetch_assoc($result)) 
 	{ 
 
@@ -33,32 +33,22 @@ while ($product = mysql_fetch_assoc($result))
  				$result2 = mysql_query($query) or die(mysql_error());
  				$numRows = mysql_num_rows($result2); 
  				if ($numRows > 0) {
-		        echo "<div class ='product-container col-md-3'>
-						<div class = 'product-img '>
-							<img src='getProductImage.php?id={$product['id']}' />
-						</div>
-						<div class = 'product-properties'>
-							<div class ='product-name'>{$product['name']}</div>";
+		        echo "<div>{$product['name']} <img src='getProductImage.php?id={$product['id']}' width='175' height='100'/></div>";
 		    	} else {
-		    	echo "<div class = 'product-properties'>
-						<div class='product-name'>{$product['name']} </div>";
+		    	echo "<div>{$product['name']} </div>";
 
 		    	}
 
-		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div>";
+		    echo "<div>&#36;{$product['price']}</div>";
 		    $stock = $product['stock'];
 		    if ( $stock == 0) {
 		    	echo "<div> OUT OF STOCK </div>";
 			}
 			else {
-				echo"
-				<div class = 'product-options'>
-					<div class = 'buy-now'> 
-						<form method='get' action='confirmation.php'>
-							<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
-							<input class ='buy-button' type='submit' value='Buy Now'>
-						</form> 
-					</div>" ;
+				echo"<div> <form method='get' action='confirmation.php'>
+				<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
+				<input type='submit' value='Buy Now'>
+				</form> </div>" ;
 				if (isset($_SESSION['user_id'])) {
 					$user = $_SESSION['user_id'];
 					$query2 = "SELECT * FROM `users` WHERE username='$user';";
@@ -70,23 +60,23 @@ while ($product = mysql_fetch_assoc($result))
 					$result3 = mysql_query($query3) or die(mysql_error());
 					$product = mysql_fetch_assoc($result3);
 					$numRows = mysql_num_rows($result3); 
-					// echo "<div>";
+					echo "<div>";
 					if ($numRows > 0) {
 						$user_id = 1;
-						echo"<a class ='remove glyphicon glyphicon-shopping-cart' onclick=removeFromCart($product_id)><span class = 'glyphicon glyphicon-minus-sign'></span></a></div></div>";
+						echo"<button class ='remove' onclick=removeFromCart($product_id)>Remove from cart</button>";
 					}
 					else {
-						echo "<a class ='add glyphicon glyphicon-shopping-cart' onclick=addToCart($product_id)><span class = 'glyphicon glyphicon-plus-sign'></span></a></div></div>";
+						echo "<button class ='add' onclick=addToCart($product_id)>Add to cart</button>";
 					}
 				}
 				else {
 						// $product_id = $product['id'];
 						// $user_id = 0;
 						// echo "<button class='add' onclick=addToCart($product_id)>Add to cart</button>";
-						echo"<div class = 'add-to-cart'> <form method='get' action='addToCart.php'>
+						echo"<div> <form method='get' action='addToCart.php'>
 						<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
-						<input class = 'add-hidden'type='submit' value='Add to Cart'>
-						</form> </div></div></div>" ;
+						<input type='submit' value='Add to Cart'>
+						</form> </div>" ;
 				}
 
 
@@ -94,10 +84,7 @@ while ($product = mysql_fetch_assoc($result))
 
 
 	} 
-	echo "</div>";
 }
-
-
 else {
 echo '<p>No Products.</p>';
 }
@@ -120,8 +107,7 @@ if(isset( $_SESSION['password_changed'] ) && $_SESSION['password_changed']=== 1)
     $_SESSION['password_changed']= 0;
     echo "<script>alert('Password Changed Successfully')</script>";
 }
-mysql_close(); 
-?>
+mysql_close(); ?>
 
 <a href="/eShop/add.php"> Add Product </a> </br>
 

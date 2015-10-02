@@ -23,7 +23,6 @@
 		        <li class = "userMenu_item userMenu_divider">|</li>
 		        <li class = "userMenu_item"><a href="/eShop/logout.php">Logout</a></li>
 		    <?php } else { ?>
-		    	<li class = "userMenu_item userMenu_divider">|</li>
 				<li class = "userMenu_item"><a href="/eShop/login.php">Log in</a></li>
 				<li class = "userMenu_item userMenu_divider">|</li>
 		        <li class = "userMenu_item"><a href="/eShop/register.php">Register</a></li>
