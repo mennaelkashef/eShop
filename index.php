@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
+<?php 
+	require('header.php');
+?>
 <head>
 	<title>Products</title>
 </head>
 <body>
-<h1>Products</h1>
+<!-- <h1>Products</h1> -->
 <?php
-session_start();
 if(isset( $_SESSION['checkout'] ) && $_SESSION['checkout']==='1')
 {
     $_SESSION['checkout']='0';
