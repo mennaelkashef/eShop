@@ -17,7 +17,7 @@ $_SESSION['form_token'] = $form_token;
 
 <body>
 <h2>Add user</h2>
-<form action="adduser_submit.php" method="post">
+<form action="adduser_submit.php" method="post" enctype="multipart/form-data">
 <fieldset>
 <p>
 <label for="firstname">First Name</label>
@@ -36,8 +36,13 @@ $_SESSION['form_token'] = $form_token;
 <input type="text" id="password" name="password" value="" maxlength="20" />
 </p>
 <p>
+
+<label for="image">Choose Profile Picture</label>
+<input type="file" name="image" id="image">
+</p>
+<p>
 <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
-<input type="submit" value="&rarr; Login" />
+<input type="submit" value="&rarr; Sign Up" />
 </p>
 </fieldset>
 </form>

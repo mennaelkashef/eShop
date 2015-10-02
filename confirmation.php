@@ -11,7 +11,17 @@
 	$username = 'root';
 	mysql_connect('localhost', $username); 
 	mysql_select_db('eShop_db');
+	session_start();
+
 	if ($_GET) {
+
+		if (!isset($_SESSION['user_id'])) {
+			echo "You need to Login or Register To buy Products ";
+			$_SESSION['product_id_unauthenticated'] = $_GET['product_id'];
+			echo $_SESSION['product_id_unauthenticated'];
+			require('login.php');
+
+		} else {
 		$id = $_GET['product_id'];
 		$query = "SELECT * FROM `Products` WHERE `id` = $id;";
 		$result = mysql_query($query) or die(mysql_error());
@@ -21,10 +31,10 @@
 					<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
 					<input type='submit' value='Checkout'>
 					</form> </td>"; }
+		}
 	}
 	else if ($_POST) {
 		$product_id = $_POST['product_id'];
-		session_start();
 		$user = $_SESSION['user_id'];
 		$query = "SELECT `user_id` FROM `users` WHERE `username` = '$user'";
 		$result = mysql_query($query) or die(mysql_error());
@@ -40,6 +50,7 @@
 	mysql_close();
 	header("Location: /eShop/index.php");
 	}
+
 	?>
 
 

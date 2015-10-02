@@ -1,38 +1,26 @@
 <?php
 
-/*** begin our session ***/
 session_start();
 
-/*** check if the users is already logged in ***/
 if(isset( $_SESSION['user_id'] ))
 {
     $message = 'Users is already logged in';
 }
-/*** check that both the username, password have been submitted ***/
 if(!isset( $_POST['username'], $_POST['password']))
 {
-    $message = 'Please enter a valid username and password';
+    $message = 'Please enter a valid email and password';
 }
-/*** check the username is the correct length ***/
 elseif (strlen( $_POST['username']) > 20 || strlen($_POST['username']) < 4)
 {
-    $message = 'Incorrect Length for Username';
+    $message = 'Incorrect Length for email';
 }
-/*** check the password is the correct length ***/
 elseif (strlen( $_POST['password']) > 20 || strlen($_POST['password']) < 4)
 {
     $message = 'Incorrect Length for Password';
 }
-/*** check the username has only alpha numeric characters ***/
-// elseif (ctype_alnum($_POST['username']) != true)
-// {
-//     ** if there is no match **
-//     $message = "Username must be alpha numeric";
-// }
-/*** check the password has only alpha numeric characters ***/
+
 elseif (ctype_alnum($_POST['password']) != true)
 {
-        /*** if there is no match ***/
         $message = "Password must be alpha numeric";
 }
 else
@@ -44,67 +32,65 @@ else
     /*** now we can encrypt the password ***/
     $password = sha1( $password );
     
-    /*** connect to database ***/
-    /*** mysql hostname ***/
-    $mysql_hostname = 'localhost';
+    mysql_connect('localhost', 'root'); 
+    mysql_select_db('eShop_db');
+    $query = "SELECT * FROM users 
+                    WHERE username = '$username' AND password = '$password'";
+    $result = mysql_query($query) or die(mysql_error());
+    $numRows = mysql_num_rows($result);
 
-    /*** mysql username ***/
-    $mysql_username = 'root';
+    if ($numRows > 0){
+        $row = mysql_fetch_assoc($result);
+        $user_id = $row['user_id'];
+        $_SESSION['user_id'] = $username;
 
-    /*** mysql password ***/
-    $mysql_password = '';
-
-    /*** database name ***/
-    $mysql_dbname = 'eshop_db';
-
-    try
-    {
-        $dbh = new PDO("mysql:host=$mysql_hostname;dbname=$mysql_dbname", $mysql_username, $mysql_password);
-        /*** $message = a message saying we have connected ***/
-
-        /*** set the error mode to excptions ***/
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        /*** prepare the select statement ***/
-        $stmt = $dbh->prepare("SELECT username, password FROM users 
-                    WHERE username = :username AND password = :password");
-
-        /*** bind the parameters ***/
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-        $stmt->bindParam(':password', $password, PDO::PARAM_STR, 40);
-
-        /*** execute the prepared statement ***/
-        $stmt->execute();
-
-        /*** check for a result ***/
-        $user_id = $stmt->fetchColumn();
-
-        /*** if we have no result then fail boat ***/
-        if($user_id == false)
-        {
-                $message = 'Login Failed';
+        /*** tell the user we are logged in ***/
+        $message = 'You are now logged in';
+        if (isset($_SESSION['product_id_unauthenticated']) and ($_SESSION['product_id_unauthenticated'] != 0)) {
+            $product_id = $_SESSION['product_id_unauthenticated'];
+            unset($_SESSION['product_id_unauthenticated']);
+            header("Location: /eShop/confirmation.php?product_id=$product_id");
+            die();
+        } 
+        if (isset($_SESSION['product_id_cart_unauthenticated']) and ($_SESSION['product_id_cart_unauthenticated'] != 0)) {
+            $product_id = $_SESSION['product_id_cart_unauthenticated'];
+            header("Location: /eShop/addToCart.php?product_id=$product_id");
+            die();
         }
-        /*** if we do have a result, all is well ***/
-        else
-        {
-                /*** set the session user_id variable ***/
-                $_SESSION['user_id'] = $user_id;
-
-                /*** tell the user we are logged in ***/
-                $message = 'You are now logged in';
-                header("Location: /eShop/index.php");
-        }
-
+        header("Location: /eShop/index.php");
 
     }
-    catch(Exception $e)
-    {
-        /*** if we are here, something has gone wrong with the database ***/
-        $message = 'We are unable to process your request. Please try again later"';
-    }
+    else {
+        $message = 'Login Failed';
+ 
+    } 
 }
-
-header("Location: /eShop/index.php");
-die();
 ?>
 
+<html>
+<head>
+<title>Login</title>
+</head>
+
+<body>
+<h2>Login Here</h2>
+<form action="login_submit.php" method="post">
+<fieldset>
+<?php echo $message; ?>
+<p>
+<label for="username">Username</label>
+<input type="text" id="username" name="username" value="" maxlength="20" />
+</p>
+<p>
+<label for="password">Password</label>
+<input type="text" id="password" name="password" value="" maxlength="20" />
+</p>
+<p>
+<input type="submit" value="→ Login" />
+</p>
+    <a href='/eShop/register.php'> Sign up here </a>
+
+</fieldset>
+</form>
+</body>
+</html>

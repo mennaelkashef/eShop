@@ -9,19 +9,27 @@ mysql_select_db('eShop_db');
 
 $product_id = $_GET['product_id'];
 
-$username = $_SESSION['user_id'];
-$query = "SELECT * FROM `users` WHERE username='$username';";
-$result = mysql_query($query) or die(mysql_error());
-$user = mysql_fetch_assoc($result);
-$user_id = $user['user_id'];
-$query = "INSERT INTO `cart`(`product_id`, `user_id`) VALUES ('$product_id', '$user_id')";
-mysql_query($query);
+		if (!isset($_SESSION['user_id'])) {
+			echo "You need to Login or Register To buy Products ";
+			$_SESSION['product_id_cart_unauthenticated'] = $_GET['product_id'];
+			require('login.php');
+
+		} else {
+			$username = $_SESSION['user_id'];
+			$query = "SELECT * FROM `users` WHERE username='$username';";
+			$result = mysql_query($query) or die(mysql_error());
+			$user = mysql_fetch_assoc($result);
+			$user_id = $user['user_id'];
+			$query = "INSERT INTO `cart`(`product_id`, `user_id`) VALUES ('$product_id', '$user_id')";
+			mysql_query($query);
+		}
+
+if (isset($_SESSION['product_id_cart_unauthenticated']) and isset($_SESSION['user_id'])) {
+	unset($_SESSION['product_id_cart_unauthenticated']);
+	header("Location: /eShop/viewCart.php");
+}
 
 
-
-
-echo $product_id;
-echo $user_id;
 mysql_close();
 ?>
 </body>
