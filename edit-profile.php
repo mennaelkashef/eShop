@@ -139,7 +139,7 @@
 
     <div class="form-group"> 
         <div class="col-md-10">
-          <button type="submit" class="btn btn-block btn-cta-primary">Submit</button>
+          <button type="submit" class="btn-submit btn btn-block btn-cta-primary">Submit</button>
         </div>
      </div>
         </form>

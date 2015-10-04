@@ -1,5 +1,10 @@
+<html>
+<head>
+	<title>Cart</title>
+</head>
+<body>
 <?php
-	session_start();
+	require('header.php');
 	$username = 'root';
 	$password = '';
 	mysql_connect('localhost', $username, $password);
@@ -26,30 +31,51 @@
 		die();
 		}
 		if ($numRows > 0) {
+			$total_price = 0;
+			$total_items = 0;
 			while ($cart_products = mysql_fetch_assoc($result)) {
 				$product_id = $cart_products['product_id'];
-	
 				$query = "SELECT * FROM `products` WHERE id='$product_id';";
 				$result2 = mysql_query($query) or die(mysql_error());
 				$product = mysql_fetch_assoc($result2);
-				echo "<table>";
-				echo "<tr>";
-				echo"<td>{$product['name']}</td><td>{$product['price']}</td>";
-				echo "<td><button onclick=removeFromCart($product_id)>remove</button></td>";
-				echo"</tr>";
-				echo "</table>";
-				
-			
+				$total_price = $total_price + $product['price'];
+				$total_items = $total_items + 1;
+				echo "<div class='checkout-prods'>
+						<div class = 'checkout-prod' >
+							<div class='remove-cart'>
+								<a href='#' onclick=removeFromCart($product_id)><span class='glyphicon glyphicon-remove'></span></a>
+							</div>
+							<div class ='checkout-prod-img'>
+								<img src='getProductImage.php?id={$product['id']}' />
+							</div>
+							<div class='checkout-prod-properties'>
+								<div class='checkout-prod-name'>{$product['name']}</div>
+								<div class='checkout-prod-price'>&#36;{$product['price']}</div>
+							</div>
+						</div>
+					  </div>";
 			}
-			echo "<form method='post' action='viewCart.php'>
-					<input type='hidden' name='checkout' id='checkout' value='checkout'>
-				<input type='submit' value='Checkout'>
-				</form>";
+			echo "<div class = 'total'>
+					<div class = 'total-items'>
+						<div class='items-title'>Total item(s)</div>
+						<div class='items-number'>$total_items</div>
+					</div>
+					<div class = 'total-price'>
+						<div class ='price-title'>Subtotal</div>
+						<div class ='items-price'>&#36;$total_price</div>
+					</div>
+				</div>";
+			echo "<div class ='checkout'>
+					<form method='post' action='viewCart.php'>
+						<input type='hidden' name='checkout' id='checkout' value='checkout'>
+					<input class = 'checkout-btn' type='submit' value='Checkout'>
+					</form>
+				</div>";
 			
 		}
 		
 		else {
-			echo '<p>No products.</p>';
+			echo '<div class = "empty-cart">Your Cart is empty</div>';
 		}
 	mysql_close();
 ?>

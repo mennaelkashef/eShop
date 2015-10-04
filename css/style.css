@@ -6,7 +6,7 @@ nav {
 	width: 100%;
 	z-index: 100;
 	background: none;
-  	background: linear-gradient(#ccc, white);
+ 
   	position: fixed;
   	top: 0;
 }
@@ -17,6 +17,7 @@ nav div {
 
 .userMenu {
 	height: 30px;
+	background: #333;
 }
 
 .userMenu_list {
@@ -32,11 +33,12 @@ nav div {
 }
 
 .userMenu_item a{
-	color: #777;
+	color: #FED900;
+	font-weight: 600;
 }
 
 .userMenu_list .userMenu_divider {
-	color: #777;	
+	color: #FED900;	
 }
 
 .products-list {
@@ -78,6 +80,10 @@ nav div {
 	float: right;
 	font-weight: 600;
 }
+
+.out-of-stock {
+	color:red;
+}
 .product-options {
 	margin: 5px 0 ;
 	width: 80%;
@@ -99,43 +105,199 @@ nav div {
 	font-size: 17px;
 }
 
-.add-hidden {
-	
-}
 
-.add-to-cart {
-
-}
 .remove {
 	float: right;
 	color: #777;
 	cursor: pointer;
 	font-size: 17px;
 }
+
+.add-cart {
+	float: right;
+}
+
+.add-to-cart {
+	background: #fff;
+	border:none;
+	font-size: 15px;
+	font-weight: 550;
+	border: 1px solid #eee;
+}
 .product-options div {
 	display: inline-block;
 }
 
-.userMenu_item a:hover{
+.checkout-prods {
+	margin-top: 50px;
+}
+
+.checkout-prod {
+	height: 160px;
+	border-bottom: 1px solid #f1f1f1;
+	position: relative;
+	
+}
+.checkout-prod div {
+	display: inline-block;
+	margin-left: 15px;
+
+}
+
+.checkout-prod-img {
+	height: 140px;
+	width: 100px;
+}
+
+.checkout-prod-img img{
+	height: 100%;
+	width: 100%;
+}
+
+.checkout-prod-properties {
+	height: 150px;
+	position: absolute;
+}
+
+.checkout-prod-properties div {
+	display: block;
+}
+
+.checkout-prod-name {
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.checkout-prod-price {
+	margin-bottom: 5px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.remove-cart {
+	position: absolute;
+}
+
+.remove-cart a{
+	text-decoration: none;
 	color: black;
+}
+
+.total {
+	height: 60px;
+	width: 100%;
+	background: #f4f2f2;
+    border: 1px solid #e5e5e5;
+    padding: 10px;
+    position: relative;
+}
+
+
+.total-items {
+	margin-left: 15px;
+}
+
+.total-items div {
+	display: inline-block;
+}
+
+.items-title {
+	font-weight: 600;
+}
+.items-number {
+	position: absolute;
+	font-weight: 600;
+	left:250px;
+}
+
+.total-price {
+	margin-left: 15px;
+}
+
+.total-price div {
+	display: inline-block;
+}
+.price-title {
+	
+}
+.items-price {
+	position: absolute;
+	left:250px;
+}
+.checkout {
+	text-align: center;
+}
+
+.checkout-btn {
+	background: #FED900;
+	height: 50px;
+	width: 145px;
+	font-size: 17px;
+	font-weight:600;
+	text-transform: uppercase;
+	color: #333;
+	border: none;
+	margin-top: 20px;
+}
+
+.empty-cart {
+	margin-top: 60px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: 600;
+	color:#333;
+}
+
+.btn-submit {
+	background: #FED900;
+	font-size: 14px;
+	font-weight:600;
+	text-transform: uppercase;
+	width:150px;
+	margin: 0 auto;
+	color: #333;
+	border: none;
+}
+
+.userMenu_item a:hover{
+	color: #FED900;
 	text-decoration: none;
 }
 
 .userMenu_item a:focus{
-	color: black;
+	color: #FED900;
 	text-decoration: none;
 }
 
 .add:hover {
-	color:#777;
+	color:#FED900;
 	text-decoration: none;
 }
 
 .remove:hover {
-	color:#777;
+	color:#FED900;
 	text-decoration: none;
 }
 
 .buy-button:hover{
 
+}
+
+.remove-cart a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.checkout-btn:hover {
+	background: #333;
+	color: #FED900;
+}
+
+
+.checkout-btn:focus {
+	background: #333;
+	color: #FED900;
 }

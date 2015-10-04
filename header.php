@@ -16,12 +16,12 @@
 			<?php if (isset($_SESSION['user_id'])) { ?>
 				<li class = "userMenu_item"><a href="/eShop/">Home</a></li>
 				<li class = "userMenu_item userMenu_divider">|</li>
-				<li class = "userMenu_item"><a href="/eShop/edit-profile.php">
-				<?php  echo $_SESSION['user_id']; ?></a></li>
+				<li class = "userMenu_item"><a href="/eShop/viewCart.php"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 				<li class = "userMenu_item userMenu_divider">|</li>
 				<li class = "userMenu_item"><a href="/eShop/history.php">History</a></li>
 				<li class = "userMenu_item userMenu_divider">|</li>
-		        <li class = "userMenu_item"><a href="/eShop/viewCart.php"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+				<li class = "userMenu_item"><a href="/eShop/edit-profile.php">
+				<?php  echo $_SESSION['user_id']; ?></a></li>
 		        <li class = "userMenu_item userMenu_divider">|</li>
 		        <li class = "userMenu_item"><a href="/eShop/logout.php">Logout</a></li>
 		    <?php } else { ?>

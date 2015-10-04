@@ -48,7 +48,7 @@ while ($product = mysql_fetch_assoc($result))
 		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div>";
 		    $stock = $product['stock'];
 		    if ( $stock == 0) {
-		    	echo "<div> OUT OF STOCK </div>";
+		    	echo "<div class = 'out-of-stock'> OUT OF STOCK </div>";
 			}
 			else {
 				echo"
@@ -83,17 +83,14 @@ while ($product = mysql_fetch_assoc($result))
 						// $product_id = $product['id'];
 						// $user_id = 0;
 						// echo "<button class='add' onclick=addToCart($product_id)>Add to cart</button>";
-						echo"<div class = 'add-to-cart'> <form method='get' action='addToCart.php'>
+						echo"<div class = 'add-cart'> 
+						<form method='get' action='addToCart.php'>
 						<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
-						<input class = 'add-hidden'type='submit' value='Add to Cart'>
+						<input class = 'add-to-cart' type='submit' value='Add to Cart'>
 						</form> </div></div></div>" ;
 				}
-
-
 			}
-
-
-	} 
+		} 
 	echo "</div>";
 }
 
@@ -123,7 +120,7 @@ if(isset( $_SESSION['password_changed'] ) && $_SESSION['password_changed']=== 1)
 mysql_close(); 
 ?>
 
-<a href="/eShop/add.php"> Add Product </a> </br>
+<!-- <a href="/eShop/add.php"> Add Product </a> </br> -->
 
 
 </body>
