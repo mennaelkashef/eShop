@@ -83,9 +83,10 @@ while ($product = mysql_fetch_assoc($result))
 						// $product_id = $product['id'];
 						// $user_id = 0;
 						// echo "<button class='add' onclick=addToCart($product_id)>Add to cart</button>";
-						echo"<div class = 'add-to-cart'> <form method='get' action='addToCart.php'>
+						echo"<div class = 'add-cart'> 
+						<form method='get' action='addToCart.php'>
 						<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
-						<input class = 'add-hidden'type='submit' value='Add to Cart'>
+						<input class = 'add-to-cart' type='submit' value='Add to Cart'>
 						</form> </div></div></div>" ;
 				}
 			}

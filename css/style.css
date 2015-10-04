@@ -105,18 +105,24 @@ nav div {
 	font-size: 17px;
 }
 
-.add-hidden {
-	
-}
 
-.add-to-cart {
-
-}
 .remove {
 	float: right;
 	color: #777;
 	cursor: pointer;
 	font-size: 17px;
+}
+
+.add-cart {
+	float: right;
+}
+
+.add-to-cart {
+	background: #fff;
+	border:none;
+	font-size: 15px;
+	font-weight: 550;
+	border: 1px solid #eee;
 }
 .product-options div {
 	display: inline-block;
