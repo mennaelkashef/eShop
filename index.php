@@ -88,12 +88,8 @@ while ($product = mysql_fetch_assoc($result))
 						<input class = 'add-hidden'type='submit' value='Add to Cart'>
 						</form> </div></div></div>" ;
 				}
-
-
 			}
-
-
-	} 
+		} 
 	echo "</div>";
 }
 

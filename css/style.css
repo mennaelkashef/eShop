@@ -6,7 +6,7 @@ nav {
 	width: 100%;
 	z-index: 100;
 	background: none;
-  	background: linear-gradient(#ccc, white);
+ 
   	position: fixed;
   	top: 0;
 }
@@ -17,6 +17,7 @@ nav div {
 
 .userMenu {
 	height: 30px;
+	background: #333;
 }
 
 .userMenu_list {
@@ -32,11 +33,12 @@ nav div {
 }
 
 .userMenu_item a{
-	color: #777;
+	color: #FED900;
+	font-weight: 600;
 }
 
 .userMenu_list .userMenu_divider {
-	color: #777;	
+	color: #FED900;	
 }
 
 .products-list {
@@ -116,26 +118,115 @@ nav div {
 	display: inline-block;
 }
 
-.userMenu_item a:hover{
+.checkout-prods {
+	margin-top: 50px;
+}
+
+.checkout-prod {
+	height: 160px;
+	border-bottom: 1px solid #f1f1f1;
+	position: relative;
+	
+}
+.checkout-prod div {
+	display: inline-block;
+	margin-left: 15px;
+
+}
+
+.checkout-prod-img {
+	height: 140px;
+	width: 100px;
+}
+
+.checkout-prod-img img{
+	height: 100%;
+	width: 100%;
+}
+
+.checkout-prod-properties {
+	height: 150px;
+	position: absolute;
+}
+
+.checkout-prod-properties div {
+	display: block;
+}
+
+.checkout-prod-name {
+	margin-bottom: 10px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.checkout-prod-price {
+	margin-bottom: 5px;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.remove-cart {
+	position: absolute;
+}
+
+.remove-cart a{
+	text-decoration: none;
 	color: black;
+}
+
+.checkout {
+	text-align: center;
+}
+
+.checkout-btn {
+	background: #FED900;
+	height: 50px;
+	width: 145px;
+	font-size: 17px;
+	font-weight:600;
+	text-transform: uppercase;
+	color: #333;
+	border: none;
+	margin-top: 20px;
+}
+
+.userMenu_item a:hover{
+	color: #FED900;
 	text-decoration: none;
 }
 
 .userMenu_item a:focus{
-	color: black;
+	color: #FED900;
 	text-decoration: none;
 }
 
 .add:hover {
-	color:#777;
+	color:#FED900;
 	text-decoration: none;
 }
 
 .remove:hover {
-	color:#777;
+	color:#FED900;
 	text-decoration: none;
 }
 
 .buy-button:hover{
 
+}
+
+.remove-cart a:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.checkout-btn:hover {
+	background: #333;
+	color: #FED900;
+}
+
+.checkout-btn:focus {
+	background: #333;
+	color: #FED900;
 }

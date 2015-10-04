@@ -24,7 +24,7 @@
 		$numRows = mysql_num_rows($result);
 		if ($numRows > 0) {
 		echo "<div class='products-list col-md-12'>";
-		echo "<h1>History</h1>";
+	
 
 			while ($product = mysql_fetch_assoc($result)) 
 				{ 
@@ -44,7 +44,7 @@
 
 		    	}
 
-		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div>";
+		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div></div>";
 				} 
 
 		} else {
