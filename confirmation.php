@@ -4,14 +4,11 @@
 	<title> Confirmation </title>
 </head>
 <body>
-
-<h1> Confirmation </h1>
-
-	<?php  
+	<?php
+	require('header.php');  
 	$username = 'root';
 	mysql_connect('localhost', $username); 
 	mysql_select_db('eShop_db');
-	session_start();
 
 	if ($_GET) {
 
@@ -26,11 +23,21 @@
 		$query = "SELECT * FROM `Products` WHERE `id` = $id;";
 		$result = mysql_query($query) or die(mysql_error());
 		while ($product = mysql_fetch_assoc($result)) {
-			echo "<div style= 'float:left'>{$product['name']} <span>{$product['price']}&#36</span></div> <br>";
-			echo"<td> <form method='post' action='confirmation.php'>
+			echo "<div class='checkout-prods'>
+						<div class = 'checkout-prod' >
+							<div class ='checkout-prod-img'>
+								<img src='getProductImage.php?id={$product['id']}' />
+							</div>
+							<div class='checkout-prod-properties'>
+								<div class='checkout-prod-name'>{$product['name']}</div>
+								<div class='checkout-prod-price'>&#36;{$product['price']}</div>
+							</div>
+						</div>
+					  </div> 
+			<div class='checkout'> <form method='post' action='confirmation.php'>
 					<input type='hidden' id='product_id' name='product_id' value='{$product['id']}'>
-					<input type='submit' value='Checkout'>
-					</form> </td>"; }
+					<input class = 'checkout-btn' type='submit' value='Confirm'>
+					</form> </div>"; }
 		}
 	}
 	else if ($_POST) {

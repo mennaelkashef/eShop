@@ -120,7 +120,7 @@ if(isset( $_SESSION['password_changed'] ) && $_SESSION['password_changed']=== 1)
 mysql_close(); 
 ?>
 
-<a href="/eShop/add.php"> Add Product </a> </br>
+<!-- <a href="/eShop/add.php"> Add Product </a> </br> -->
 
 
 </body>
