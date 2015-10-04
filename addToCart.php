@@ -1,6 +1,7 @@
 <html>
 <body>
 <?php 
+session_start();
 $username = 'root';
 $password = '';
 mysql_connect('localhost', $username, $password);
