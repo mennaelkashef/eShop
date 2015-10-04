@@ -75,7 +75,7 @@
 		}
 		
 		else {
-			echo '<p>No products.</p>';
+			echo '<div class = "empty-cart">Your Cart is empty</div>';
 		}
 	mysql_close();
 ?>
