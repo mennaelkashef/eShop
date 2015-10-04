@@ -41,11 +41,13 @@
 		    	} else {
 		    	echo "<div class = 'product-properties'>
 						<div class='product-name'>{$product['name']} </div>";
-
 		    	}
+		    	echo "</div>";
 
 		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div>";
 				} 
+			echo "</div>";
+
 
 		} else {
 			echo "<h3> You didn't purchase any products yet</h3>";
