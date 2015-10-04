@@ -1,3 +1,8 @@
+<html>
+<head>
+	<title>Cart</title>
+</head>
+<body>
 <?php
 	require('header.php');
 	$username = 'root';
@@ -26,12 +31,15 @@
 		die();
 		}
 		if ($numRows > 0) {
+			$total_price = 0;
+			$total_items = 0;
 			while ($cart_products = mysql_fetch_assoc($result)) {
 				$product_id = $cart_products['product_id'];
-	
 				$query = "SELECT * FROM `products` WHERE id='$product_id';";
 				$result2 = mysql_query($query) or die(mysql_error());
 				$product = mysql_fetch_assoc($result2);
+				$total_price = $total_price + $product['price'];
+				$total_items = $total_items + 1;
 				echo "<div class='checkout-prods'>
 						<div class = 'checkout-prod' >
 							<div class='remove-cart'>
@@ -47,6 +55,16 @@
 						</div>
 					  </div>";
 			}
+			echo "<div class = 'total'>
+					<div class = 'total-items'>
+						<div class='items-title'>Total item(s)</div>
+						<div class='items-number'>$total_items</div>
+					</div>
+					<div class = 'total-price'>
+						<div class ='price-title'>Subtotal</div>
+						<div class ='items-price'>&#36;$total_price</div>
+					</div>
+				</div>";
 			echo "<div class ='checkout'>
 					<form method='post' action='viewCart.php'>
 						<input type='hidden' name='checkout' id='checkout' value='checkout'>
