@@ -48,7 +48,7 @@ while ($product = mysql_fetch_assoc($result))
 		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div>";
 		    $stock = $product['stock'];
 		    if ( $stock == 0) {
-		    	echo "<div> OUT OF STOCK </div>";
+		    	echo "<div class = 'out-of-stock'> OUT OF STOCK </div>";
 			}
 			else {
 				echo"

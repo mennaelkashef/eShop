@@ -80,6 +80,10 @@ nav div {
 	float: right;
 	font-weight: 600;
 }
+
+.out-of-stock {
+	color:red;
+}
 .product-options {
 	margin: 5px 0 ;
 	width: 80%;
@@ -192,6 +196,17 @@ nav div {
 	margin-top: 20px;
 }
 
+.btn-submit {
+	background: #FED900;
+	font-size: 14px;
+	font-weight:600;
+	text-transform: uppercase;
+	width:150px;
+	margin: 0 auto;
+	color: #333;
+	border: none;
+}
+
 .userMenu_item a:hover{
 	color: #FED900;
 	text-decoration: none;
@@ -225,6 +240,7 @@ nav div {
 	background: #333;
 	color: #FED900;
 }
+
 
 .checkout-btn:focus {
 	background: #333;

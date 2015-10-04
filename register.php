@@ -51,7 +51,7 @@ $_SESSION['form_token'] = $form_token;
 	<input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
 	<div class="form-group"> 
 	    <div class="col-md-10">
-	      <button type="submit" class="btn btn-block btn-cta-primary">Submit</button>
+	      <button type="submit" class="btn-submit btn btn-block btn-cta-primary">Submit</button>
 	    </div>
 	 </div>
 	  	</form>
