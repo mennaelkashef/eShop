@@ -4,7 +4,9 @@
 </head>
 
 <body>
-<?php 	require('header.php'); ?>
+<?php 
+session_start();
+require('header.php'); ?>
 <?php 
 	$username = 'root';
 	mysql_connect('localhost', $username); 
@@ -28,6 +30,20 @@
 		$firstname = $_POST['firstname'];
 		$lastname = $_POST['lastname'];
 		$username = $_POST['username'];
+		$length = strlen($username);
+		echo $length;
+		echo "<script> alert('$length'); </script>";
+
+		// if (! isset($_POST['username']) || $length == 0) {
+		// 	$_SESSION['message'] = "Can't leave Email Blank";
+		// 	header("Location: /eShop/edit-profile.php");
+
+		// } elseif (strlen( $_POST['username']) > 20 || strlen($_POST['username']) < 4)
+		// 	{
+		// 	    $_SESSION['message'] = 'Incorrect Length for Email';
+		// 	    header("Location: /eShop/edit-profile.php");
+
+		// 	}
 		$query = "SELECT * FROM `users` WHERE username='$username'";
 		$result = mysql_query($query) or die(mysql_error());
 		$numRows = mysql_num_rows($result);
@@ -80,7 +96,7 @@
 					mysql_query($query) or die(mysql_error()); 
 				}
 			}
-		header("Location: /eShop/index.php");
+		 header("Location: /eShop/index.php");
 		}
 		mysql_close();
 	}

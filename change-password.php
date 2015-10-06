@@ -28,7 +28,8 @@
 </form>
 </body>
 </html> -->
-<?php require 'header.php'; ?>
+<?php session_start();
+ require 'header.php'; ?>
 <?php 
 	if ($_POST) {
 		$username = 'root';
@@ -93,9 +94,10 @@
 
 	<form class='form-horizontal box' role='form' action="" method="post">
 	<h2>Change Password</h2>
-	  <div class="form-group">
-	  <?php echo $message; ?>
-	  </div>
+        <div class="alert alert-danger col-md-10">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <?php echo $message; ?>
+        </div>
 	  <div class="form-group">
 	    <div class="col-md-10"> 
 	      <input type="password" class="form-control" name="oldpassword" id="oldpassword" placeholder="Old Password">

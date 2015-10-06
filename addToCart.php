@@ -20,7 +20,7 @@ $product_id = $_GET['product_id'];
 			$result = mysql_query($query) or die(mysql_error());
 			$user = mysql_fetch_assoc($result);
 			$user_id = $user['user_id'];
-			$query = "INSERT INTO `cart`(`product_id`, `user_id`) VALUES ('$product_id', '$user_id')";
+			$query = "INSERT INTO `cart`(`product_id`, `user_id`,`quantity` ) VALUES ('$product_id', '$user_id', 1)";
 			mysql_query($query);
 		}
 

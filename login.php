@@ -120,6 +120,12 @@
 	    <div class="col-md-10">
 	      <button type="submit" class="btn-submit btn btn-block btn-cta-primary">Submit</button>
 	    </div>
+	   <div class="row"> 
+	   <br><br><br>
+	  	<div class="col-md-10 text-center">
+	      <p> Don't have an account?<a href="/eShop/register.php"> Register here </a></p>
+	    </div>
+	   </div>
 	  </div>
 	  	</form>
 	</div>

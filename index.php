@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <?php 
+	session_start();
 	require('header.php');
 ?>
 <head>
@@ -13,7 +15,7 @@ if(isset( $_SESSION['checkout'] ) && $_SESSION['checkout']==='1')
 {
     $_SESSION['checkout']='0';
 
-    echo "<script>alert('your purchase was successful')</script>";
+    echo "<script>alert('Your Purchase Was Successful')</script>";
 }
 $username = 'root';
 mysql_connect('localhost', $username); 
@@ -49,6 +51,7 @@ while ($product = mysql_fetch_assoc($result))
 		    $stock = $product['stock'];
 		    if ( $stock == 0) {
 		    	echo "<div class = 'out-of-stock'> OUT OF STOCK </div>";
+		    	echo "</div>";
 			}
 			else {
 				echo"
@@ -92,6 +95,7 @@ while ($product = mysql_fetch_assoc($result))
 			}
 		} 
 	echo "</div>";
+
 }
 
 
@@ -135,7 +139,6 @@ mysql_close();
             type : 'GET',
             data : 'product_id='+product_id,
             success : function(){
-                alert('This item has been added to your cart');
                 window.location.reload(true);
             }
         });
@@ -147,7 +150,6 @@ function removeFromCart(product_id) {
             type : 'GET',
             data : 'product_id='+product_id,
             success : function(){
-                alert('This item has been removed from your cart');
                 window.location.reload(true);
             }
         });

@@ -5,6 +5,7 @@
 </head>
 <body>
 	<?php
+	session_start();
 	require('header.php');  
 	$username = 'root';
 	mysql_connect('localhost', $username); 

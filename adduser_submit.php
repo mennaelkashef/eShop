@@ -1,8 +1,8 @@
 
 <?php
-    require('header.php');
-
  session_start();
+ require('header.php');
+
 
 /*** begin our session ***/
 //session_start();
@@ -117,7 +117,10 @@ else
 
     <form class='form-horizontal box' id='register_form'role='form' action="adduser_submit.php" method="post" enctype="multipart/form-data">
     <h2>Register</h2>
-    <?php echo $message; ?>
+        <div class="alert alert-danger col-md-10">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <?php echo $message; ?>
+        </div>
         <div class="form-group">
             <div class="col-md-10">
               <input type="text" class="form-control" name="firstname" id="firstname" placeholder="First Name">
@@ -149,7 +152,7 @@ else
     <input type="hidden" name="form_token" value="<?php echo $form_token; ?>" />
     <div class="form-group"> 
         <div class="col-md-10">
-          <button type="submit" class="btn btn-block btn-cta-primary">Submit</button>
+          <button type="submit" class="btn-submit btn btn-block btn-cta-primary">Submit</button>
         </div>
      </div>
         </form>

@@ -4,12 +4,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'> -->
 	<link rel='stylesheet' type='text/css' href='css/bootstrap.min.css'>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body>
-	<?php session_start(); ?>
 	<nav class ="md-col-12">
 		<div class  = "userMenu">
 			<ul class = "userMenu_list">
@@ -25,6 +24,8 @@
 		        <li class = "userMenu_item userMenu_divider">|</li>
 		        <li class = "userMenu_item"><a href="/eShop/logout.php">Logout</a></li>
 		    <?php } else { ?>
+		    	<li class = "userMenu_item"><a href="/eShop/">Home</a></li>
+		   		<li class = "userMenu_item userMenu_divider">|</li>
 				<li class = "userMenu_item"><a href="/eShop/login.php">Log in</a></li>
 				<li class = "userMenu_item userMenu_divider">|</li>
 		        <li class = "userMenu_item"><a href="/eShop/register.php">Register</a></li>

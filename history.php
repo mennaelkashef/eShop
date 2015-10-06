@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	<?php 
+	<?php 	session_start();
 			require('header.php');
 
 	$username = 'root';
@@ -19,7 +19,7 @@
 			while ($user = mysql_fetch_assoc($result)) {
 				$user_id = $user['user_id'];
 			}
-		$query = "SELECT a.id, a.name, a.price FROM Products a, purchases b WHERE a.id = b.product_id and b.user_id='$user_id'";
+		$query = "SELECT DISTINCT a.id, a.name, a.price FROM Products a, purchases b WHERE a.id = b.product_id and b.user_id='$user_id'";
 		$result = mysql_query($query) or die(mysql_error());
 		$numRows = mysql_num_rows($result);
 		if ($numRows > 0) {
@@ -42,15 +42,16 @@
 		    	echo "<div class = 'product-properties'>
 						<div class='product-name'>{$product['name']} </div>";
 		    	}
+		    			    echo "<div class='product-price'>&#36;{$product['price']}</div> </div>";
+
 		    	echo "</div>";
 
-		    echo "<div class='product-price'>&#36;{$product['price']}</div> </div></div>";
 				} 
 			echo "</div>";
 
 
 		} else {
-			echo "<h3> You didn't purchase any products yet</h3>";
+			echo "<div class = 'empty-cart'>You didn't purchase any products yet</div>";
 		}
 	}
 	?>

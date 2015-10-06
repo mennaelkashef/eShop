@@ -26,6 +26,7 @@ CREATE TABLE CART (
 `cart_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 `product_id` INT,
 `user_id` INT
+`quantity` INT
 )
 
 CREATE TABLE Product_Images (

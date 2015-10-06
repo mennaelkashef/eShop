@@ -4,6 +4,7 @@
 </head>
 <body>
 <?php
+	session_start();
 	require('header.php');
 	$username = 'root';
 	$password = '';
@@ -24,6 +25,9 @@
 				   mysql_query($remove_query) or die(mysql_error());
 				   $query = "INSERT INTO `purchases`(`product_id`, `user_id`) VALUES ('$product_id', '$user_id')";
 				   mysql_query($query) or die(mysql_error('update failed'));
+				   $quantity = $cart_products['quantity'];
+				   $query = "UPDATE `Products` SET `stock` = `stock` - $quantity WHERE (`id` = $product_id);";
+	    		   mysql_query($query) or die(mysql_error());
 				
 			}
 		$_SESSION['checkout'] = '1';
@@ -33,13 +37,14 @@
 		if ($numRows > 0) {
 			$total_price = 0;
 			$total_items = 0;
+			echo "<div class=container>";
 			while ($cart_products = mysql_fetch_assoc($result)) {
 				$product_id = $cart_products['product_id'];
 				$query = "SELECT * FROM `products` WHERE id='$product_id';";
 				$result2 = mysql_query($query) or die(mysql_error());
 				$product = mysql_fetch_assoc($result2);
-				$total_price = $total_price + $product['price'];
-				$total_items = $total_items + 1;
+				$total_price = $total_price + ($product['price'] * $cart_products['quantity']);
+				$total_items = $total_items + $cart_products['quantity'];
 				echo "<div class='checkout-prods'>
 						<div class = 'checkout-prod' >
 							<div class='remove-cart'>
@@ -51,6 +56,7 @@
 							<div class='checkout-prod-properties'>
 								<div class='checkout-prod-name'>{$product['name']}</div>
 								<div class='checkout-prod-price'>&#36;{$product['price']}</div>
+								<div class=''> <input onchange=updateCart($product_id) id='quantity_$product_id' type='number' value='{$cart_products['quantity']}' max={$product['stock']}></div>
 							</div>
 						</div>
 					  </div>";
@@ -71,12 +77,14 @@
 					<input class = 'checkout-btn' type='submit' value='Checkout'>
 					</form>
 				</div>";
-			
+					echo "</div>";
+
 		}
-		
+
 		else {
 			echo '<div class = "empty-cart">Your Cart is empty</div>';
 		}
+
 	mysql_close();
 ?>
 <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -92,4 +100,30 @@
         });
  	  console.log(product_id);
 }
+
+ function updateCart(product_id) {
+ 	  $.ajax({
+            url : 'updateCart.php', // give complete url here
+            type : 'GET',
+            data: { quantity: parseInt($('#quantity_'+product_id).val()),
+        			product_id: product_id},
+            // data : 'quantity='+parseInt($('#quantity').val())+', product_id='+product_id,
+            success : function(data) {
+            		window.location.reload(true);
+         			}
+        });
+ 	  console.log(product_id);
+}
+
+// $('#quantity').change(function(){
+//  	  $.ajax({
+//             url : 'updateCart.php', // give complete url here
+//             type : 'GET',
+            // data : 'quantity='+$('#quantity').val()+', product_id='+product_id,
+
+//             data : 'quantity='+$('#quantity').val()+', product_id='+product_id,
+//             success : function() {
+// 			    window.location.reload(true);
+// 			}
+//         });})
 </script>

@@ -79,7 +79,10 @@ else
 
     <form class='form-horizontal box' role='form' action="login_submit.php" method="post">
     <h2>Login Here</h2>
+        <div class="alert alert-danger col-md-10">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <?php echo $message; ?>
+        </div>
         <div class="form-group">
             <div class="col-md-10">
               <input type="email" class="form-control" name="username" id="username" placeholder="Enter email">
@@ -92,8 +95,14 @@ else
       </div>
       <div class="form-group"> 
         <div class="col-md-10">
-          <button type="submit" class="btn btn-block btn-cta-primary">Submit</button>
+          <button type="submit" class="btn-submit btn btn-block btn-cta-primary">Submit</button>
         </div>
+       <div class="row"> 
+       <br><br><br>
+        <div class="col-md-10 text-center">
+          <p> Don't have an account?<a href="/eShop/register.php"> Register here </a></p>
+        </div>
+       </div>
       </div>
         </form>
     </div>
